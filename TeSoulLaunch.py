@@ -4,6 +4,8 @@ from PIL import Image
 import wget
 import configparser
 import git
+import requests
+import zipfile
 
 customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("green")
@@ -129,10 +131,12 @@ class App(customtkinter.CTk):
     
     def home_frame_button_1_event(self):
         print("ok")
-        URL = "https://github.com/TestSoulja/TeSoulLauncher/blob/main/TeSoulLaunch.zip"
-        wget.download(URL, "TeSoulLaunch.zip")
-        print("ok")
-
+        url = 'https://github.com/TestSoulja/TeSoulLauncher/blob/main/TeSoulLaunch.exe'
+        r = requests.get(url, allow_redirects=True)
+        open('TeSoulLaunch.exe', 'wb').write(r.content)
+        # with zipfile.ZipFile('TeSoulLaunch.zip', 'r') as zip_ref:
+        #     zip_ref.extractall(c)
+        
     def frame_2_button_event(self):
         self.select_frame_by_name("frame_2")
 
@@ -147,6 +151,9 @@ if __name__ == "__main__":
     app = App()
     app.mainloop()
 
-# pyinstaller --onefile --noconsole TeSoulLaunch.py
+# pyinstaller -F --onefile --noconsole Launcher.py
+# pyinstaller -F --onefile --noconsole --add-data "TeSoulLaunch.py;." Launcher.py
+# pyinstaller Launcher.spec
 
-# --icon=calc.ico
+# pyinstaller --noconsole Launcher.py
+# pyinstaller --noconsole --add-data "TeSoulLaunch.py;." Launcher.py
