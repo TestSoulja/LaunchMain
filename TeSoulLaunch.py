@@ -1,6 +1,7 @@
 import customtkinter
 import os
 from PIL import Image
+import wget
 import configparser
 import git
 
@@ -13,11 +14,10 @@ config = configparser.ConfigParser()
 config.read(c + 'config.ini', encoding='UTF-8')
 
 
-
-repo_url = "https://github.com/Hardik-Kushwaha/GIT_Python_Automation"
-local_path = "/home/hardik/GFG_Temp/Cloned_Repo"
-repo = git.Repo.clone_from(repo_url, local_path) 
-print(f'Repository Cloned at location: {local_path}') 
+# repo_url = "https://github.com/TestSoulja/TeSoulLauncher.git"
+# local_path = c
+# repo = git.Repo.clone_from(repo_url, local_path) 
+# print(f'Repository Cloned at location: {local_path}') 
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -34,15 +34,15 @@ class App(customtkinter.CTk):
         # load images with light and dark mode image
         image_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "images")
         
-        
-
         # create navigation frame
         self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.navigation_frame.grid(row=0, column=0, sticky="nsew")
         self.navigation_frame.grid_rowconfigure(4, weight=1)
 
-        self.navigation_frame_label = customtkinter.CTkLabel(self.navigation_frame, text="  Image Example",
-                                                             compound="left", font=customtkinter.CTkFont(size=15, weight="bold"))
+        self.navigation_frame_label = customtkinter.CTkLabel(
+            self.navigation_frame, 
+            text="  Image Example",compound="left", 
+            font=customtkinter.CTkFont(size=15, weight="bold"))
         self.navigation_frame_label.grid(row=0, column=0, padx=20, pady=20)
 
         self.home_button = customtkinter.CTkButton(
@@ -83,8 +83,11 @@ class App(customtkinter.CTk):
         self.home_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
         self.home_frame.grid_columnconfigure(0, weight=1)
 
-        # self.home_frame_button_1 = customtkinter.CTkButton(self.home_frame, text="")
-        # self.home_frame_button_1.grid(row=1, column=0, padx=20, pady=10)
+        self.home_frame_button_1 = customtkinter.CTkButton(
+            self.home_frame,
+            text="Download",
+            command=self.home_frame_button_1_event)
+        self.home_frame_button_1.grid(row=1, column=0, padx=20, pady=10)
         # self.home_frame_button_2 = customtkinter.CTkButton(self.home_frame, text="CTkButton", compound="right")
         # self.home_frame_button_2.grid(row=2, column=0, padx=20, pady=10)
         # self.home_frame_button_3 = customtkinter.CTkButton(self.home_frame, text="CTkButton", compound="top")
@@ -123,6 +126,12 @@ class App(customtkinter.CTk):
 
     def home_button_event(self):
         self.select_frame_by_name("home")
+    
+    def home_frame_button_1_event(self):
+        print("ok")
+        URL = "https://github.com/TestSoulja/TeSoulLauncher/blob/main/TeSoulLaunch.exe"
+        wget.download(URL, "TeSoulLaunch.exe")
+        print("ok")
 
     def frame_2_button_event(self):
         self.select_frame_by_name("frame_2")
