@@ -129,8 +129,8 @@ class App(customtkinter.CTk):
     
     def home_frame_button_1_event(self):
         print("ok")
-        URL = "https://github.com/TestSoulja/TeSoulLauncher/blob/main/TeSoulLaunch.exe"
-        wget.download(URL, "TeSoulLaunch.exe")
+        URL = "https://github.com/TestSoulja/TeSoulLauncher/blob/main/TeSoulLaunch.zip"
+        wget.download(URL, "TeSoulLaunch.zip")
         print("ok")
 
     def frame_2_button_event(self):
