@@ -87,33 +87,27 @@ class App(customtkinter.CTk):
             command=self.frame_3_button_event)
         self.frame_3_button.grid(row=3, column=0, sticky="ew")
         
-        self.update_button = customtkinter.CTkButton(
-            self.navigation_frame, 
-            corner_radius=0, height=40, 
-            border_spacing=10, 
-            text="Check for update", 
-            fg_color="transparent", 
-            text_color=("gray10", "gray90"), 
-            hover_color=("gray70", "gray30"), 
-            command=self.update_button_event)
-        self.update_button.grid(row=10, column=0, sticky="ew")
+        # self.update_button = customtkinter.CTkButton(
+        #     self.navigation_frame, 
+        #     corner_radius=0, height=40, 
+        #     border_spacing=10, 
+        #     text="Check for update", 
+        #     fg_color="transparent", 
+        #     text_color=("gray10", "gray90"), 
+        #     hover_color=("gray70", "gray30"), 
+        #     command=self.update_button_event)
+        # self.update_button.grid(row=10, column=0, sticky="ew")
 
 
         # create home frame
         self.home_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
         self.home_frame.grid_columnconfigure(0, weight=1)
 
-        self.home_frame_button_1 = customtkinter.CTkButton(
-            self.home_frame,
-            text="Download",
-            command=self.home_frame_button_1_event)
-        self.home_frame_button_1.grid(row=1, column=0, padx=20, pady=10)
-        # self.home_frame_button_2 = customtkinter.CTkButton(self.home_frame, text="CTkButton", compound="right")
-        # self.home_frame_button_2.grid(row=2, column=0, padx=20, pady=10)
-        # self.home_frame_button_3 = customtkinter.CTkButton(self.home_frame, text="CTkButton", compound="top")
-        # self.home_frame_button_3.grid(row=3, column=0, padx=20, pady=10)
-        # self.home_frame_button_4 = customtkinter.CTkButton(self.home_frame, text="CTkButton", compound="bottom", anchor="w")
-        # self.home_frame_button_4.grid(row=4, column=0, padx=20, pady=10)
+        # self.home_frame_button_1 = customtkinter.CTkButton(
+        #     self.home_frame,
+        #     text="Download",
+        #     command=self.home_frame_button_1_event)
+        # self.home_frame_button_1.grid(row=1, column=0, padx=20, pady=10)
 
         # create second frame
         self.second_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
@@ -147,17 +141,6 @@ class App(customtkinter.CTk):
     def home_button_event(self):
         self.select_frame_by_name("home")
     
-    def home_frame_button_1_event(self):
-        base_url = 'https://cloud-api.yandex.net/v1/disk/public/resources/download?'
-        public_key = "https://disk.yandex.kz/d/j7vnWGchS6AMEQ"
-        final_url = base_url + urlencode(dict(public_key=public_key))
-        response = requests.get(final_url)
-        download_url = response.json()['href']
-        
-        # Загружаем файл и сохраняем его
-        download_response = requests.get(download_url)
-        with open('TeSoulLaunch.exe', 'wb') as f:   # Здесь укажите нужный путь к файлу
-            f.write(download_response.content)
         
     def frame_2_button_event(self):
         self.select_frame_by_name("frame_2")
